@@ -25,23 +25,29 @@ To set up the Docker environment, run the following command:
 docker build --network host -t nvcr.io/nvidian/bundlesdf .
 ```
 ## 3) Capturing the data (To be done outside docker container)
-- The data is captured on Intel RealSense D435I.
+The data is captured on Intel RealSense D435I.
 
   ### why this device?
   - it provides synchronized depth, RGB, and IMU (accelerometer + gyroscope) data, enabling accurate 3D reconstruction and camera pose estimation. Its wide field of view and high-resolution depth sensing make it ideal for dense mapping and visual-inertial odometry tasks.
 > **Note:** Make sure to use the same device for both recinstruction and tracking.
-- To capture the data
+To capture the data
    ```bash
    cd Object_Reconstruction
    ./capture.sh
    ```
-   - Enter the name of the object you want to reconstruct.
-   - this will open a masking window where you have to manually mask the image shown on the gui by clicking on the points around the boundary of the object as shown in the image.
-   - ![Demo Image](./assets/demo.png)
-   - Once the entire boundary is created press Enter to confirm the mask.
-   - ![Demo Image](./assets/demo.png)
-   - Once the mask looks good press Enter again.
-   - The script will store the frames inside the `.Object_Reconstruction/input/{OBJECT_NAME}`
+Enter the name of the object you want to reconstruct.
+
+This will open a masking window where you have to manually mask the image shown on the gui by clicking on the points around the boundary of the object as shown in the image.
+
+![Demo Image](./assets/demo.png)
+
+Once the entire boundary is created press Enter to confirm the mask.
+
+![Demo Image](./assets/demo.png)
+
+Once the mask looks good press Enter again.
+
+The script will store the frames inside the `.Object_Reconstruction/input/{OBJECT_NAME}`
   ### Directory Structure
 
       {OBJECT_NAME}/
@@ -50,19 +56,19 @@ docker build --network host -t nvcr.io/nvidian/bundlesdf .
       ├── depth/
       ├── masks/
       └── rgb/
-  - The name of the object will be updated inside `./Object_Reconstruction/last_object_name.txt`
+The name of the object will be updated inside `./Object_Reconstruction/last_object_name.txt`
  
 ## 4) Object Reconstruction
 
-- Run:
+Run:
   ```bash
   ./run_conatiner.sh
   ```
-- Then inside the container(When running it for the first time or else you can skip this step):
+Then inside the container(When running it for the first time or else you can skip this step):
   ```bash
   ./build.sh
   ```
-- Run the final script inside the docker:
+Run the final script inside the docker:
   ```bash
   ./run.sh
   ```
