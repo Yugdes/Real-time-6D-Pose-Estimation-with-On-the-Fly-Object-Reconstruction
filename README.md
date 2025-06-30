@@ -1,6 +1,9 @@
 # Real-time-6D-Pose-Estimation-with-On-the-Fly-Object-Reconstruction
 ## 0) Clone the repository in your system
 
+```bash
+git clone https://github.com/Yugdes/Real-time-6D-Pose-Estimation-with-On-the-Fly-Object-Reconstruction.git
+```
 
 ## 1) Data Download
 
