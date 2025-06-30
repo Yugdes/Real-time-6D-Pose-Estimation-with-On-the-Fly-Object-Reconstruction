@@ -24,12 +24,12 @@ To set up the Docker environment, run the following command:
 ```bash
 docker build --network host -t nvcr.io/nvidian/bundlesdf .
 ```
-## 3) Capturing the data (To be done outside docker)
+## 3) Capturing the data (To be done outside docker container)
 - The data is captured on Intel RealSense D435I.
 
-  ### why this camera ?
+  ### why this device?
   - it provides synchronized depth, RGB, and IMU (accelerometer + gyroscope) data, enabling accurate 3D reconstruction and camera pose estimation. Its wide field of view and high-resolution depth sensing make it ideal for dense mapping and visual-inertial odometry tasks.
-
+> **Note:** Make sure to use the same device for both recinstruction and tracking.
 - To capture the data
    ```bash
    cd Object_Reconstruction
@@ -91,9 +91,9 @@ Place them inside `.live-pose/FoundationPose/weights`
 
 ### Running the container
 ```bash
-  cd docker
-  ./run_doc_container.sh
-  ```
+cd docker
+./run_doc_container.sh
+```
 ### Building packages inside the container
 ```bash
 CMAKE_PREFIX_PATH=$CONDA_PREFIX/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 bash build.bash
@@ -101,8 +101,8 @@ CMAKE_PREFIX_PATH=$CONDA_PREFIX/lib/python3.9/site-packages/pybind11/share/cmake
 ### Running 6D pose estimation
 Before running the script make sure that the object is kept stationery in front of the camera, and there should be no other object kept between  
 ```bash
-  ./run_live.sh
-  ```
+./run_live.sh
+```
 Write the names of the objects you want to track e.g. duster, cup (if the object names are duster and cup) then press Enter.
 GUI will pop-up for manual masking of the objects you choose.
 > **Note:** Make sure that you mask only one object at a time in the window, terminal will print the object you have to mask in the current GUI.
