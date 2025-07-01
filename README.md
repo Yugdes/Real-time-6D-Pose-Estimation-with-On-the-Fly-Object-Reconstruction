@@ -1,6 +1,8 @@
 # Real-time-6D-Pose-Estimation-with-On-the-Fly-Object-Reconstruction
 ## 0) Clone the repository in your system
 
+> **Note:** Make sure to read the requirements to running this pipeline. (requirements are at the end of the README)
+
 ```bash
 git clone https://github.com/Yugdes/Real-time-6D-Pose-Estimation-with-On-the-Fly-Object-Reconstruction.git
 ```
@@ -130,5 +132,60 @@ GUI will pop-up for manual masking of the objects you choose.
 ![Demo Image](./Photos/p6.png)
 ![Demo Image](./Photos/p7.png)
   
+## System Requirements for BundleSDF
 
-  
+To run **BundleSDF** effectively, especially for near real-time RGB-D object tracking and 3D reconstruction, your system should meet the following requirements:
+
+### Recommended Setup
+
+| Component | Specification |
+|-----------|----------------|
+| **GPU**   | NVIDIA GPU with CUDA support, **≥12 GB VRAM** (e.g., RTX 3080, A5000) |
+| **CPU**   | 6–8 core processor (e.g., Intel i7/Ryzen 7, 3+ GHz) |
+| **RAM**   | ≥32 GB system memory |
+| **Storage** | SSD with sufficient space for video data and model checkpoints |
+| **OS**    | Linux (Ubuntu 20.04+), Docker or Conda environment preferred |
+
+### Minimum Requirements (May Be Unstable)
+
+| Component | Minimum |
+|-----------|---------|
+| **GPU**   | NVIDIA GPU with CUDA & cuDNN, **≥8 GB VRAM** (e.g., RTX 2060/3060) |
+| **CPU**   | Quad-core processor |
+| **RAM**   | 16 GB |
+
+### Notes
+
+- CUDA and cuDNN must be properly installed and compatible with your PyTorch version.
+- Low VRAM (e.g., 8 GB) may lead to out-of-memory errors or cuDNN failures.
+- Start with small test sequences to verify setup before scaling to complex scenes.
+
+## System Requirements for FoundationPose
+
+To efficiently run the **FoundationPose** model—capable of 6D pose estimation and tracking for novel objects—ensure your system meets the following specs:
+
+### Recommended Setup
+
+| Component | Specification |
+|-----------|----------------|
+| **GPU**   | NVIDIA GPU with CUDA + cuDNN support (for accelerated inference) |
+|           | - High-end desktop GPUs (e.g., RTX 3080 or better) for optimal throughput |
+|           | - Jetson AGX Orin or similar for embedded use (running tracking at > 120 FPS) :contentReference[oaicite:1]{index=1} |
+| **CPU**   | Multi-core processor (e.g., modern i7/i9 or Ryzen 7/9 or ARM equivalent in edge devices) |
+| **RAM**   | ≥ 16 GB (more recommended for multiple concurrent models or complex scenes) |
+| **Storage** | SSD with enough space for model files (~126 MB) and logs/data |
+| **OS & Env** | Linux (Ubuntu 20.04+), CUDA & cuDNN matching your PyTorch or TensorRT version |
+
+### Notes & Usage Tips
+
+- The model is **compute-intensive**; typical GPU inference runs at lower frequency suitable for desktop applications :contentReference[oaicite:2]{index=2}.
+- For real-time tracking workloads, Jetson Orin runs at **over 120 FPS** :contentReference[oaicite:3]{index=3}.
+- Make sure your CUDA/cuDNN versions align with your framework (e.g., PyTorch or TensorRT).
+- For CPU-only environments, expect much slower performance—tracking at high FPS requires GPU acceleration.
+
+---
+
+*Summary:*  
+Use a CUDA-enabled NVIDIA GPU for efficient inference. For embedded/robotic scenarios, Jetson Orin-class devices are excellent. Ensure you have sufficient CPU, RAM, and correct CUDA/cuDNN versions.
+
+
