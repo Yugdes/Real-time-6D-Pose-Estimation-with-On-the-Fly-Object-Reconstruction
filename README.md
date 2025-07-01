@@ -35,6 +35,7 @@ The data is captured on Intel RealSense D435I.
   ### why this device?
   - it provides synchronized depth, RGB, and IMU (accelerometer + gyroscope) data, enabling accurate 3D reconstruction and camera pose estimation. Its wide field of view and high-resolution depth sensing make it ideal for dense mapping and visual-inertial odometry tasks.
 > **Note:** Make sure to use the same device for both recinstruction and tracking.
+
 To capture the data
    ```bash
    conda activate obj_recon        # if you have created a conda environment 
@@ -43,13 +44,17 @@ To capture the data
    ```
 Enter the name of the object you want to reconstruct.
 
-This will open a masking window where you have to manually mask the image shown on the gui by clicking on the points around the boundary of the object as shown in the image.
+After then a gui will pop up showing you the recording from the device, try to show the objects from all angles into the device with less hand involvement for accurate reconstruction.
 
-![Demo Image](./assets/demo.png)
+Once you have shown the object from all the angles press Enter to stop the recording.
+
+After the recording is over, a masking window will pop up where you have to manually mask the image shown on the gui by clicking on the points around the boundary of the object as shown in the image.
+
+![Demo Image](./Photos/p1.png)
 
 Once the entire boundary is created press Enter to confirm the mask.
 
-![Demo Image](./assets/demo.png)
+![Demo Image](./Photos/p2.png)
 
 Once the mask looks good press Enter again.
 
@@ -63,7 +68,7 @@ The script will store the frames inside the `.Object_Reconstruction/input/{OBJEC
       ├── masks/
       └── rgb/
 The name of the object will be updated inside `./Object_Reconstruction/last_object_name.txt`
- 
+> **Note:** The more frames you capture better results, try to capture about 600 frames for better results. 
 ## 4) Object Reconstruction
 
 Run:
@@ -82,7 +87,7 @@ Run the final script inside the docker:
   You can check the final mesh.obj file here: `.Object_Reconstruction/mesh/{OBJECT_NAME}/mesh/mesh_biggest_component_smoothed.obj`
   This OBJ file will be as input given to the Foundation Pose for 6D pose estimation.
 
-  ![Demo Image](./assets/demo.png)
+  ![Demo Image](./Photos/p3.png)
 
 > **Note:** Make sure to close the container moving onto 6D pose estimation.
 
@@ -117,10 +122,13 @@ Before running the script make sure that the object is kept stationery in front 
 ```
 Write the names of the objects you want to track e.g. duster, cup (if the object names are duster and cup) then press Enter.
 GUI will pop-up for manual masking of the objects you choose.
+
+![Demo Image](./Photos/p4.png) ![Demo Image](./Photos/p5.png)
 > **Note:** Make sure that you mask only one object at a time in the window, terminal will print the object you have to mask in the current GUI.
 > **Note:** Masking technique for Foundation-Pose is different than that of the Object Reconstruction.
 
-
+![Demo Image](./Photos/p6.png)
+![Demo Image](./Photos/p7.png)
   
 
   
