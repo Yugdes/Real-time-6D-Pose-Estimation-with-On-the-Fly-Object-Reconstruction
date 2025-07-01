@@ -17,6 +17,11 @@ git clone https://github.com/Yugdes/Real-time-6D-Pose-Estimation-with-On-the-Fly
 - Download: [`outdoor_ds.ckpt`]([https://example.com/path/to/outdoor_ds.ckpt](https://drive.google.com/drive/folders/11b1-Wzxcn7LpmTgHPqlC3H1ZzGsB6j6R))
 - Place the file in: `.Object_Reconstruction/BundleSDF/BundleTrack/LoFTR/weights/`
 
+## 1.1) (Optional) Conda environment setup for running data capture script
+```bash
+conda create -n obj_recon python=3.10
+pip install -r requirements.txt
+```
 ## 2) Docker Setup
 
 To set up the Docker environment, run the following command:
@@ -32,6 +37,7 @@ The data is captured on Intel RealSense D435I.
 > **Note:** Make sure to use the same device for both recinstruction and tracking.
 To capture the data
    ```bash
+   conda activate obj_recon        # if you have created a conda environment 
    cd Object_Reconstruction
    ./capture.sh
    ```
