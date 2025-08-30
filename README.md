@@ -75,7 +75,7 @@ The name of the object will be updated inside `./Object_Reconstruction/last_obje
 
 Run:
   ```bash
-  ./run_conatiner.sh
+  ./run_container.sh
   ```
 Then inside the container(When running it for the first time or else you can skip this step):
   ```bash
